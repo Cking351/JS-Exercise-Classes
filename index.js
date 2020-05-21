@@ -41,21 +41,21 @@ class Airplane {
 */
 
 class Person {
-  constructor(attributes) {
-    this.name = attributes.name;
-    this.age = attributes.age;
-    this.stomach = attributes.stomach;
+  constructor(name,age,){
+    this.name = name;
+    this.age = age;
+    this.stomach = []
   }
   toString(){
-    return `${this.name}, ${this.age}`
-  }
-  poop(){
-    this.stomach = [];
+    return `${this.name}, ${this.age}`;
   }
   eat(edible){
     if (this.stomach.length < 10) {
-      this.stomach.push(edible)
+      this.stomach.push(edible);
     }
+  }
+  poop(){
+    this.stomach = []
   }
 }
 
@@ -74,9 +74,26 @@ class Person {
 */
 
 class Car {
-
+  constructor(model, milesPerGallon){
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0
+  }
+  fill(gallons) {
+    this.tank = this.tank + gallons;
+  }
+  drive(distance) {
+    if (this.tank > 0) {
+      let gasUsed = distance / this.milesPerGallon;
+      this.tank -= gasUsed;
+      this.odometer += distance;
+      if (this.tank <= 0) {
+        return console.log(`I ran out of miles at ${this.odometer} miles!`)
+      }
+    }
+  }
 }
-
 /*
   TASK 3
     - Write a Lambdasian class.
@@ -90,7 +107,14 @@ class Car {
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
-
+  constructor(attributes) {
+    this.name = attributes.name;
+    this.age = attributes.age;
+    this.location = attributes.location;
+  }
+  speak(){
+    return `Hello my name is ${this.name}, I am from ${this.location}`;
+  }
 }
 
 /*
@@ -108,7 +132,20 @@ class Lambdasian {
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
 class Instructor {
-
+  constructor(attributes) {
+    this.name = attributes.name;
+    this.age = attributes.age;
+    this.location = attributes.location;
+    this.specialty = attributes.specialty;
+    this.favLanguage = attributes.favLanguage;
+    this.catchPhrase = attributes.catchPhrase;
+  }
+  demo(subject) {
+    return `Today we are learning about ${subject}`;
+  }
+  grade(student, subject) {
+    return `${student.name} receives a perfect score on ${subject}`;
+  }
 }
 
 /*
@@ -127,7 +164,23 @@ class Instructor {
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
 class Student {
-
+  constructor(attributes) {
+    this.name = attributes.name;
+    this.age = attributes.age;
+    this.location = attributes.location;
+    this.previousBackground = attributes.previousBackground;
+    this.className = attributes.className;
+    this.favSubjects = attributes.favSubjects;
+  }
+  listSubjects() {
+    return `Loving ${this.favSubjects}`;
+  }
+  PRAssignment(subject) {
+    return `${student.name} has submitted a PR for ${this.subject}`;
+  }
+  sprintChallenge(subject) {
+    return `${student.name} has submitted a PR for ${this.subject}`;
+  }
 }
 
 /*
